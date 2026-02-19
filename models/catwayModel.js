@@ -7,12 +7,12 @@ const catwaySchema = new mongoose.Schema({
     unique: true
   },
 
-  type: {
+  catwayType: {
     type: String,
     required: true
   },
 
-  state: {
+  catwayState: {
     type: String,
     required: true
   }
