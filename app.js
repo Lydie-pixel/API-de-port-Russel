@@ -11,7 +11,17 @@ mongoose.connect("mongodb+srv://Lydie:Lareunion974!@russel.qrx53bn.mongodb.net/?
   .then(() => console.log(" MongoDB connecté"))
   .catch(err => console.error("Erreur MongoDB :", err));
 
+//Views avec EJS
+const path = require("path");
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+
 // Routes
+const indexRoutes = require("./routes/indexRoute");
+app.use("/api/index", indexRoutes);
+
 const catwayRoutes = require("./routes/catwayRoute");
 app.use("/api/catways", catwayRoutes);
 
