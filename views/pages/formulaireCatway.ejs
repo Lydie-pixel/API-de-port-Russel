@@ -11,11 +11,19 @@
   >
 
   <label>Type</label>
-  <select name="catwayType" required>
-    <option value="">-- Choisir --</option>
-    <option value="short" <%= catway?.type === "short" ? "selected" : "" %>>Short</option>
-    <option value="long" <%= catway?.type === "long" ? "selected" : "" %>>Long</option>
-  </select>
+<select name="catwayType" required>
+  <option value="">-- Choisir --</option>
+
+  <option value="short"
+    <%= catway && catway.catwayType === "short" ? "selected" : "" %>>
+    Short
+  </option>
+
+  <option value="long"
+    <%= catway && catway.catwayType === "long" ? "selected" : "" %>>
+    Long
+  </option>
+</select>
 
   <label>État</label>
   <input 

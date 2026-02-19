@@ -19,7 +19,7 @@ router.post("/", controller.createCatway);
 router.post("/:id", controller.updateCatway);
 
 // Suppression
-router.post("/delete/:id", controller.deleteCatway);
+router.post("/:id/delete", controller.deleteCatway);
 
 
 // API
