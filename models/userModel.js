@@ -16,7 +16,7 @@ userMail: {
     required: true
   },
 
-userPasseword: {
+userPassword: {
     type: String,
     required: true
   }

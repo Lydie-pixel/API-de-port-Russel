@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Catways</title>
+  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+</head>
+<body>
+
+<h1>Liste des Catways</h1>
+
+<a href="/catways/new" class="btn-add">
+  ➕ Ajouter un catway
+</a>
+
+<table>
+  <thead>
+    <tr>
+      <th>Numéro</th>
+      <th>Type</th>
+      <th>État</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% catways.forEach(c => { %>
+      <tr>
+        <td><%= c.catwayNumber %></td>
+        <td><%= c.catwayType %></td>
+        <td><%= c.catwayState %></td>
+
+        <td>
+          <a href="/catways/edit/<%= c._id %>">✏️</a>
+          <form action="/catways/delete/<%= c._id %>" method="POST" style="display:inline">
+          <button onclick="return confirm('Supprimer ?')">🗑️</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+</body>
+</html>

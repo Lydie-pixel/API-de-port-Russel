@@ -1,5 +1,60 @@
 const catwayService = require("../services/catwayService");
 
+// Page HTML
+exports.renderCatways = async (req, res) => {
+  try {
+    const catways = await catwayService.getAll();
+    res.render("pages/catway", { catways });
+  } catch (err) {
+    res.status(500).send("Erreur serveur");
+  }
+};
+
+// Formulaire AJOUT (vide)
+exports.renderCreateForm = (req, res) => {
+  res.render("pages/formulaireCatway", { catway: null });
+};
+
+// Formulaire MODIFICATION (rempli)
+exports.renderEditForm = async (req, res) => {
+  try {
+    const catway = await catwayService.getById(req.params.id);
+
+    if (!catway) {
+      return res.status(404).send("Catway introuvable");
+    }
+
+    res.render("pages/formulaireCatway", { catway });
+
+  } catch (err) {
+    res.status(500).send("Erreur serveur");
+  }
+};
+
+// Formulaire modification
+exports.updateCatway = async (req, res) => {
+  try {
+
+    const oldCatway = await catwayService.getById(req.params.id);
+
+    if (!oldCatway) {
+      return res.status(404).send("Catway introuvable");
+    }
+
+    // On empêche la modif du numéro et du type
+    req.body.catwayNumber = oldCatway.catwayNumber;
+    req.body.catwayType = oldCatway.catwayType;
+
+    const catway = await catwayService.update(req.params.id, req.body);
+
+    res.redirect("/catways");
+
+  } catch (err) {
+    res.status(400).send("Erreur modification");
+  }
+};
+
+//JSON
 // GET ALL
 exports.getAllCatways = async (req, res) => {
   try {

@@ -9,6 +9,7 @@ const catwaySchema = new mongoose.Schema({
 
   catwayType: {
     type: String,
+    enum: ["short", "long"],
     required: true
   },
 

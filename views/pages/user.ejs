@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Utilisateurs</title>
+  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+</head>
+<body>
+
+<h1>Liste des Utilisateurs</h1>
+
+<table>
+  <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Nom de l'utilisateur</th>
+        <th>Mail</th>
+        <th>Mot de passe</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% users.forEach(c => { %>
+      <tr>
+        <td><%= c.name %></td>
+        <td><%= c.userName %></td>
+        <td><%= c.userMail %></td>
+        <td><%= c.userPassword %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+</body>
+</html>

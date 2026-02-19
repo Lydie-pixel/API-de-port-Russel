@@ -1,0 +1,43 @@
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+}
+
+th, td {
+    border: 1px solid #aaa;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #8064A2;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    color: #8064A2;
+}
+
+.btn-add {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background: #8064A2;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.btn-add:hover {
+  background: #6c5390;
+}
+
+form {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}

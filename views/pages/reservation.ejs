@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Catways</title>
+  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+</head>
+<body>
+
+<h1>Liste des Réservations</h1>
+
+<table>
+  <thead>
+    <tr>
+        <th>Numéro</th>
+        <th>Nom du client</th>
+        <th>Nom du bateau</th>
+        <th>Date de début de réservation</th>
+        <th>Date de fin de réservation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% reservations.forEach(c => { %>
+      <tr>
+        <td><%= c.catwayNumber %></td>
+        <td><%= c.clientName %></td>
+        <td><%= c.boatName %></td>
+        <td><%= c.startDate %></td>
+        <td><%= c.endDate %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+</body>
+</html>

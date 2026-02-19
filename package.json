@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+"scripts": {
+  "start": "node app.js",
+  "dev": "nodemon app.js"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lydie-pixel/API-de-port-Russel.git"
@@ -21,6 +20,7 @@
   },
   "homepage": "https://github.com/Lydie-pixel/API-de-port-Russel#readme",
   "dependencies": {
+    "ejs": "^4.0.1",
     "express": "^5.2.1",
     "mongoose": "^9.2.1"
   },
