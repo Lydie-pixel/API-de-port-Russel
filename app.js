@@ -7,13 +7,16 @@ const app = express();
 app.use(express.json());
 
 // Connexion MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/port-russel")
+mongoose.connect("mongodb+srv://Lydie:Lareunion974!@russel.qrx53bn.mongodb.net/?appName=Russel")
   .then(() => console.log(" MongoDB connecté"))
-  .catch(err => console.error(" Erreur MongoDB :", err));
+  .catch(err => console.error("Erreur MongoDB :", err));
 
 // Routes
-const catwayRoutes = require("./routes/catwayRoutes");
+const catwayRoutes = require("./routes/catwayRoute");
 app.use("/api/catways", catwayRoutes);
+
+const reservationRoutes = require("./routes/reservationRoute");
+app.use("/api/reservations", reservationRoutes);
 
 // Serveur
 const PORT = 3000;
