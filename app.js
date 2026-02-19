@@ -19,8 +19,8 @@ app.set("views", path.join(__dirname, "views"));
 
 
 // Routes
-const indexRoutes = require("./routes/indexRoute");
-app.use("/api/index", indexRoutes);
+const indexRoute = require("./routes/indexRoute");
+app.use("/", indexRoute);
 
 const catwayRoutes = require("./routes/catwayRoute");
 app.use("/api/catways", catwayRoutes);
