@@ -15,6 +15,9 @@ mongoose.connect("mongodb+srv://Lydie:Lareunion974!@russel.qrx53bn.mongodb.net/?
 const catwayRoutes = require("./routes/catwayRoute");
 app.use("/api/catways", catwayRoutes);
 
+const reservationRoutes = require("./routes/reservationRoute");
+app.use("/api/reservations", reservationRoutes);
+
 // Serveur
 const PORT = 3000;
 
