@@ -1,5 +1,16 @@
 const reservationService = require("../services/reservationService");
 
+// Page HTML
+exports.renderReservations = async (req, res) => {
+  try {
+    const reservations = await reservationService.getAll();
+    res.render("pages/reservation", { reservations });
+  } catch (err) {
+    res.status(500).send("Erreur serveur");
+  }
+};
+
+// API JSON
 // GET ALL
 exports.getAllReservations = async (req, res) => {
   try {

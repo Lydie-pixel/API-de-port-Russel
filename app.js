@@ -26,6 +26,8 @@ const userRoutes = require("./routes/userRoute");
 // Pages EJS
 app.use("/", indexRoute);
 app.use("/catways", catwayRoutes);
+app.use("/users", userRoutes);
+app.use("/reservations", reservationRoutes);
 
 // API
 app.use("/api/catways", catwayRoutes);

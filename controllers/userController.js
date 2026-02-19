@@ -1,5 +1,16 @@
 const userService = require("../services/userService");
 
+// Page HTML
+exports.renderUsers = async (req, res) => {
+  try {
+    const users = await userService.getAll();
+    res.render("pages/user", { users });
+  } catch (err) {
+    res.status(500).send("Erreur serveur");
+  }
+};
+
+// API JSON
 // GET ALL
 exports.getAllUsers = async (req, res) => {
   try {

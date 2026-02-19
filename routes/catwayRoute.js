@@ -7,10 +7,10 @@ const controller = require("../controllers/catwayController");
 router.get("/", controller.renderCatways);
 
 // API
-router.get("/api", controller.getAllCatways);
-router.get("/api/:id", controller.getCatwayById);
-router.post("/api/", controller.createCatway);
-router.put("/api/:id", controller.updateCatway);
-router.delete("/api/:id", controller.deleteCatway);
+router.get("/json", controller.getAllCatways);
+router.get("/json/:id", controller.getCatwayById);
+router.post("/json", controller.createCatway);
+router.put("/json/:id", controller.updateCatway);
+router.delete("/json/:id", controller.deleteCatway);
 
 module.exports = router;
