@@ -17,18 +17,19 @@ const path = require("path");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-
 // Routes
 const indexRoute = require("./routes/indexRoute");
-app.use("/", indexRoute);
-
 const catwayRoutes = require("./routes/catwayRoute");
-app.use("/api/catways", catwayRoutes);
-
 const reservationRoutes = require("./routes/reservationRoute");
-app.use("/api/reservations", reservationRoutes);
-
 const userRoutes = require("./routes/userRoute");
+
+// Pages EJS
+app.use("/", indexRoute);
+app.use("/catways", catwayRoutes);
+
+// API
+app.use("/api/catways", catwayRoutes);
+app.use("/api/reservations", reservationRoutes);
 app.use("/api/users", userRoutes);
 
 // Serveur

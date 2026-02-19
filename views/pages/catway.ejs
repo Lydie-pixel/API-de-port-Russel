@@ -1,1 +1,33 @@
-import ejs from 'ejs';
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Catways</title>
+  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+</head>
+<body>
+
+<h1>Liste des Catways</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Numéro</th>
+      <th>Type</th>
+      <th>État</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% catways.forEach(c => { %>
+      <tr>
+        <td><%= c.catwayNumber %></td>
+        <td><%= c.catwayType %></td>
+        <td><%= c.catwayState %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+</body>
+</html>

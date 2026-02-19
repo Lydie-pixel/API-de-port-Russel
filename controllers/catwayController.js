@@ -1,5 +1,16 @@
 const catwayService = require("../services/catwayService");
 
+// Page HTML
+exports.renderCatways = async (req, res) => {
+  try {
+    const catways = await catwayService.getAll();
+    res.render("pages/catway", { catways });
+  } catch (err) {
+    res.status(500).send("Erreur serveur");
+  }
+};
+
+// API JSON
 // GET ALL
 exports.getAllCatways = async (req, res) => {
   try {
