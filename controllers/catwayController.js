@@ -10,7 +10,6 @@ exports.renderCatways = async (req, res) => {
   }
 };
 
-// API JSON
 // GET ALL
 exports.getAllCatways = async (req, res) => {
   try {

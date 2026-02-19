@@ -5,6 +5,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(express.static("public"));
 
 // Connexion MongoDB
 mongoose.connect("mongodb+srv://Lydie:Lareunion974!@russel.qrx53bn.mongodb.net/?appName=Russel")

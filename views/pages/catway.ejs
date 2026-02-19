@@ -24,6 +24,13 @@
         <td><%= c.catwayNumber %></td>
         <td><%= c.catwayType %></td>
         <td><%= c.catwayState %></td>
+
+        <td>
+          <a href="/catways/edit/<%= c._id %>">✏️</a>
+          <form action="/catways/delete/<%= c._id %>" method="POST" style="display:inline">
+          <button onclick="return confirm('Supprimer ?')">🗑️</button>
+          </form>
+        </td>
       </tr>
     <% }) %>
   </tbody>

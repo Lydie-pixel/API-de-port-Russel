@@ -7,10 +7,10 @@ const controller = require("../controllers/userController");
 router.get("/", controller.renderUsers);
 
 // API
-router.get("/api", controller.getAllUsers);
-router.get("/:id", controller.getUserById);
-router.post("/", controller.createUser);
-router.put("/:id", controller.updateUser);
-router.delete("/:id", controller.deleteUser);
+router.get("/json", controller.getAllUsers);
+router.get("/json/:id", controller.getUserById);
+router.post("/json", controller.createUser);
+router.put("/json/:id", controller.updateUser);
+router.delete("/json/:id", controller.deleteUser);
 
 module.exports = router;
