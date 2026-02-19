@@ -18,6 +18,9 @@ app.use("/api/catways", catwayRoutes);
 const reservationRoutes = require("./routes/reservationRoute");
 app.use("/api/reservations", reservationRoutes);
 
+const userRoutes = require("./routes/userRoute");
+app.use("/api/users", userRoutes);
+
 // Serveur
 const PORT = 3000;
 
