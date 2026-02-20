@@ -24,12 +24,14 @@ const indexRoute = require("./routes/indexRoute");
 const catwayRoutes = require("./routes/catwayRoute");
 const reservationRoutes = require("./routes/reservationRoute");
 const userRoutes = require("./routes/userRoute");
+const dashboardRoute = require("./routes/dashboardRoute");
 
 // Pages EJS
 app.use("/", indexRoute);
 app.use("/catways", catwayRoutes);
 app.use("/users", userRoutes);
 app.use("/reservations", reservationRoutes);
+app.use("/", dashboardRoute);
 
 // API
 app.use("/api/catways", catwayRoutes);
