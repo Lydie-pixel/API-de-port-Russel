@@ -1,7 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../middlewares/auth");
 
 const controller = require("../controllers/userController");
+
+//Profils
+const admin = require("../middlewares/admin"); 
+router.get("/", auth, admin, controller.renderUsers);
+router.get("/profil", auth, controller.renderProfile);
 
 // Liste
 router.get("/", controller.renderUsers);
@@ -18,5 +24,11 @@ router.post("/delete/:id", controller.deleteUser);
 // API
 router.get("/json", controller.getAllUsers);
 router.get("/json/:id", controller.getUserById);
+
+// Profil utilisateur
+router.get("/profile", auth, controller.renderProfile);
+
+// Déconnexion
+router.get("/logout", controller.logout);
 
 module.exports = router;

@@ -1,4 +1,6 @@
 const userService = require("../services/userService");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 // Page HTML
 exports.renderUsers = async (req, res) => {
@@ -8,6 +10,39 @@ exports.renderUsers = async (req, res) => {
   } catch (err) {
     res.status(500).send("Erreur serveur");
   }
+};
+
+exports.renderProfile = async (req, res) => {
+
+  const user = await userService.getById(req.user.id);
+
+  res.render("pages/profile", { user });
+};
+
+exports.register = async (req, res) => {
+  try {
+    const { name, userName, userMail, password } = req.body;
+
+    // Hash du mot de passe
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await userService.create({
+      name,
+      userName,
+      userMail,
+      password: hashedPassword
+    });
+
+    res.redirect("/login");
+
+  } catch (err) {
+    res.status(400).send("Erreur inscription");
+  }
+};
+
+exports.logout = (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/");
 };
 
 // Formulaire AJOUT (vide)

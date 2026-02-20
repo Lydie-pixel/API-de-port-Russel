@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-"scripts": {
-  "start": "node app.js",
-  "dev": "nodemon app.js"
-},
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lydie-pixel/API-de-port-Russel.git"
@@ -20,8 +20,11 @@
   },
   "homepage": "https://github.com/Lydie-pixel/API-de-port-Russel#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
     "ejs": "^4.0.1",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.2.1"
   },
   "devDependencies": {

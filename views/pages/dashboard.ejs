@@ -34,6 +34,7 @@
 
     <table>
       <tr>
+        <th>Client</th>
         <th>Bateau</th>
         <th>Début</th>
         <th>Fin</th>
@@ -41,6 +42,7 @@
 
       <% upcoming.forEach(r => { %>
         <tr>
+          <td><%= r.clientName %></td>
           <td><%= r.boatName %></td>
           <td><%= r.startDate.toLocaleDateString() %></td>
           <td><%= r.endDate.toLocaleDateString() %></td>
