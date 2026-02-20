@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Catways</title>
-  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
-</head>
-<body>
-  
-  <h1><%= user ? "Modifier un utilisateur" : "Ajouter un utilisateur" %></h1>
+  <head>
+    <meta charset="UTF-8">
+    <title>Catways</title>
+    <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+  </head>
+  <body>
+      
+    <h1><%= user ? "Modifier un utilisateur" : "Ajouter un utilisateur" %></h1>
 
-<form method="POST" action="<%= user ? '/users/' + user._id : '/users' %>">
-   <input type="hidden" name="_debug" value="ok">
-   
-  <label>Nom</label>
-  <input 
-    type="text"
-    name="name"
-    value="<%= user ? user.name : '' %>"
-    required
-  >
+    <form method="POST" action="<%= user ? '/users/' + user._id : '/users' %>">
+      <input type="hidden" name="_debug" value="ok">
+      
+      <label>Nom</label>
+      <input 
+        type="text"
+        name="name"
+        value="<%= user ? user.name : '' %>"
+        required
+      >
 
-  <label>Identifiant</label>
-  <input 
-    type="text"
-    name="userName"
-    value="<%= user ? user.userName : '' %>"
-    required
-  >
+      <label>Identifiant</label>
+      <input 
+        type="text"
+        name="userName"
+        value="<%= user ? user.userName : '' %>"
+        required
+      >
 
-  <label>Email</label>
-  <input 
-    type="email"
-    name="userMail"
-    value="<%= user ? user.userMail : '' %>"
-    required
-  >
+      <label>Email</label>
+      <input 
+        type="email"
+        name="userMail"
+        value="<%= user ? user.userMail : '' %>"
+        required
+      >
 
-  <button type="submit">
-    <%= user ? "Modifier" : "Ajouter" %>
-  </button>
+      <button type="submit">
+        <%= user ? "Modifier" : "Ajouter" %>
+      </button>
 
-</form>
-</body>
+    </form>
+  </body>
+</html>

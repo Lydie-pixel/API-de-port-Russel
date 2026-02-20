@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Utilisateurs</title>
-  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Utilisateurs</title>
+    <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+  </head>
+  <body>
 
-<h1>Liste des Utilisateurs</h1>
+    <h1>Liste des Utilisateurs</h1>
+    <a href="/users/new" class="btn-add">
+      Ajouter un utilisateur
+    </a>
 
-<a href="/users/new" class="btn-add">
-  Ajouter un utilisateur
-</a>
-
-<table>
-  <thead>
-    <tr>
-        <th>Nom</th>
-        <th>Nom de l'utilisateur</th>
-        <th>Mail</th>
-        <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% users.forEach(c => { %>
-      <tr>
-        <td><%= c.name %></td>
-        <td><%= c.userName %></td>
-        <td><%= c.userMail %></td>
-      <td>
-          <a href="/users/edit/<%= c._id %>">✏️</a>
-          <form action="/users/delete/<%= c._id %>" method="POST" style="display:inline">
-          <button onclick="return confirm('Supprimer ?')">🗑️</button>
-          </form>
-        </td>
-      </tr>
-    <% }) %>
-  </tbody>
-</table>
-
-</body>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Nom de l'utilisateur</th>
+          <th>Mail</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+        <tbody>
+        <% users.forEach(c => { %>
+          <tr>
+            <td><%= c.name %></td>
+            <td><%= c.userName %></td>
+            <td><%= c.userMail %></td>
+            <td>
+              <a href="/users/edit/<%= c._id %>">✏️</a>
+              <form action="/users/delete/<%= c._id %>" method="POST" style="display:inline">
+                <button onclick="return confirm('Supprimer ?')">🗑️</button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+    </table>
+  </body>
 </html>
