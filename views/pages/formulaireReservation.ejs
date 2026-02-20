@@ -7,8 +7,9 @@
   </head>
   <body>
     <%- include('../componements/haeder') %>
+    <%- include('../componements/head') %>
 
-    <h1><%= reservation ? "Modifier une réservation" : "Ajouter une réservation" %></h1>
+    <h2><%= reservation ? "Modifier une réservation" : "Ajouter une réservation" %></h2>
 
     <form method="POST" action="<%= reservation ? '/reservations/' + reservation._id : '/reservations' %>">
 

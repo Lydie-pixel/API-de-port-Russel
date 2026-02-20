@@ -7,8 +7,9 @@
   </head>
   <body>
   <%- include('../componements/haeder') %>
+  <%- include('../componements/head') %>
 
-    <h1><%= user ? "Modifier un utilisateur" : "Ajouter un utilisateur" %></h1>
+    <h2><%= user ? "Modifier un utilisateur" : "Ajouter un utilisateur" %></h2>
 
     <form method="POST" action="<%= user ? '/users/' + user._id : '/users' %>">
       <input type="hidden" name="_debug" value="ok">
