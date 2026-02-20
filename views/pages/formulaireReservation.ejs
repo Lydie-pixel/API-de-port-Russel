@@ -6,7 +6,8 @@
     <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
   </head>
   <body>
-    
+    <%- include('../componements/haeder') %>
+
     <h1><%= reservation ? "Modifier une réservation" : "Ajouter une réservation" %></h1>
 
     <form method="POST" action="<%= reservation ? '/reservations/' + reservation._id : '/reservations' %>">
@@ -55,5 +56,6 @@
         <%= reservation ? "Modifier" : "Ajouter" %>
       </button>
     </form>
+    <%- include('../componements/footer') %>
   </body>
 </html>

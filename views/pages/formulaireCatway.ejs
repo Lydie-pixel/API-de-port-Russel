@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
   </head>
   <body>
+    <%- include('../componements/haeder') %>
     <h1><%= catway ? "Modifier un catway" : "Ajouter un catway" %></h1>
 
     <form method="POST" action="<%= catway ? '/catways/' + catway._id : '/catways' %>">
@@ -45,5 +46,6 @@
         <%= catway ? "Modifier" : "Ajouter" %>
       </button>
     </form>
+    <%- include('../componements/footer') %>
   </body>
 </html>
