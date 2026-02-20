@@ -1,1 +1,83 @@
-import ejs from 'ejs';
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Catways</title>
+  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+</head>
+<body>
+<%- include('../componements/haeder') %>
+<%- include('../componements/head') %>
+
+  <h2>Liste des Catways</h2>
+
+  <a href="/catways/new" class="btn-add">
+    Ajouter un catway
+  </a>
+
+  <table id="Catway">
+    <thead>
+      <tr>
+        <th>Numéro</th>
+        <th>Type</th>
+        <th>État</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% catways.forEach(c => { %>
+        <tr>
+          <td><%= c.catwayNumber %></td>
+          <td><%= c.catwayType %></td>
+          <td><%= c.catwayState %></td>
+
+          <td>
+            <a href="/catways/edit/<%= c._id %>">✏️</a>
+            <form action="/catways/delete/<%= c._id %>" method="POST" style="display:inline">
+            <button onclick="return confirm('Supprimer ?')">🗑️</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+     <h1>Liste des Réservations</h1>
+
+    <a href="/reservations/new" class="btn-add">
+      Ajouter une réservation
+    </a>
+
+    <table id="Reservations">
+      <thead>
+        <tr>
+          <th>Numéro</th>
+          <th>Nom du client</th>
+          <th>Nom du bateau</th>
+          <th>Date de début de réservation</th>
+          <th>Date de fin de réservation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% reservations.forEach(c => { %>
+          <tr>
+            <td><%= c.catwayNumber %></td>
+            <td><%= c.clientName %></td>
+            <td><%= c.boatName %></td>
+            <td><%= c.startDate.toLocaleDateString("fr-FR") %></td>
+            <td><%= c.endDate.toLocaleDateString("fr-FR") %></td>
+          <td>
+            <a href="/reservations/edit/<%= c._id %>">✏️</a>
+            <form action="/reservations/delete/<%= c._id %>" method="POST" style="display:inline">
+              <button onclick="return confirm('Supprimer ?')">🗑️</button>
+            </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <%- include('../componements/footer') %>
+</body>
+</html>

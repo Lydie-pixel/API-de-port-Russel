@@ -3,19 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
+  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
 </head>
 
 <body>
+<%- include('./componements/haeder') %>
+<%- include('./componements/head') %>
 
-  <h1><%= title %></h1>
-
-  <p>Bienvenue sur l’API du Port Russel</p>
-
+  <h2><%= title %></h2>
+  <div class="content">
+<section class="presentation">
+  <h3>Bienvenue sur l’API du Port Russel</h3>
+  <p> Veuillez trouver le site du port Russel sur quelle vous pouvez gérér le traitement des réservations des catways et des catways eux mêmes.</p>
+  
+  <h3>Fonctionnalités</h3>
   <ul>
-    <li><a href="/api/users">Users</a></li>
-    <li><a href="/api/catways">Catways</a></li>
-    <li><a href="/api/reservations">Réservations</a></li>
+    <li>Gérer les catways : ajouter, modifier, supprimer et lister les catways disponibles au port.</li>
+    <li>Gérer les réservations : créer, modifier, supprimer et afficher les réservations de catways.</li>
+    <li>Gérer les utilisateurs : ajouter, modifier, supprimer et lister les utilisateurs du système.</li>
   </ul>
 
+  <h3>Technologies utilisées</h3>
+  <ul>
+    <li>Node.js avec Express pour le backend.</li>
+    <li>EJS pour le rendu des vues côté serveur.</li>
+    <li>MongoDB pour la base de données.</li>
+    <li>CSS pour le style de l'interface utilisateur.</li>
+  </ul>
+  <h3>Comment utiliser l'API</h3>
+  <p>Pour utiliser l'API, vous pouvez accéder aux différentes sections via la barre de navigation en haut de la page. Vous pouvez ajouter, modifier ou supprimer des catways, des réservations et des utilisateurs en utilisant les formulaires disponibles dans chaque section.</p>
+  <h3>Contact</h3>
+  <p>Pour toute question ou problème concernant l'API du Port Russel, veuillez contacter l'administrateur du système</p>
+</section>
+<section class="connexion">
+  <h3>Connexion</h3>
+  <p>Pour vous connecter à l'API, veuillez utiliser les identifiants fournis par l'administrateur du système.</p>
+  <form>
+    <label for="username">Nom d'utilisateur:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Mot de passe:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit">Se connecter</button>
+  </form>
+</section>
+</div>
 </body>
+<%- include('./componements/footer') %>
 </html>

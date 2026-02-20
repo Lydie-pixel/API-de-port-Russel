@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Catways</title>
-  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Réservations</title>
+    <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+  </head>
+  <body>
+    <%- include('../componements/haeder') %>
+    <%- include('../componements/head') %>
 
-<h1>Liste des Réservations</h1>
+    <h2>Liste des Réservations</h2>
 
-<table>
-  <thead>
-    <tr>
-        <th>Numéro</th>
-        <th>Nom du client</th>
-        <th>Nom du bateau</th>
-        <th>Date de début de réservation</th>
-        <th>Date de fin de réservation</th>
-    </tr>
-  </thead>
+    <a href="/reservations/new" class="btn-add">
+      Ajouter une réservation
+    </a>
 
-  <tbody>
-    <% reservations.forEach(c => { %>
-      <tr>
-        <td><%= c.catwayNumber %></td>
-        <td><%= c.clientName %></td>
-        <td><%= c.boatName %></td>
-        <td><%= c.startDate %></td>
-        <td><%= c.endDate %></td>
-      </tr>
-    <% }) %>
-  </tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>Numéro</th>
+          <th>Nom du client</th>
+          <th>Nom du bateau</th>
+          <th>Date de début de réservation</th>
+          <th>Date de fin de réservation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
 
-</body>
+      <tbody>
+        <% reservations.forEach(c => { %>
+          <tr>
+            <td><%= c.catwayNumber %></td>
+            <td><%= c.clientName %></td>
+            <td><%= c.boatName %></td>
+            <td><%= c.startDate.toLocaleDateString("fr-FR") %></td>
+            <td><%= c.endDate.toLocaleDateString("fr-FR") %></td>
+          <td>
+            <a href="/reservations/edit/<%= c._id %>">✏️</a>
+            <form action="/reservations/delete/<%= c._id %>" method="POST" style="display:inline">
+              <button onclick="return confirm('Supprimer ?')">🗑️</button>
+            </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <%- include('../componements/footer') %>
+  </body>
 </html>

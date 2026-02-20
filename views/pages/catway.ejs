@@ -6,39 +6,42 @@
   <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
 </head>
 <body>
+  <%- include('../componements/haeder') %>
+  <%- include('../componements/head') %>
 
-<h1>Liste des Catways</h1>
+  <h2>Liste des Catways</h2>
 
-<a href="/catways/new" class="btn-add">
-  ➕ Ajouter un catway
-</a>
+  <a href="/catways/new" class="btn-add">
+    Ajouter un catway
+  </a>
 
-<table>
-  <thead>
-    <tr>
-      <th>Numéro</th>
-      <th>Type</th>
-      <th>État</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% catways.forEach(c => { %>
+  <table>
+    <thead>
       <tr>
-        <td><%= c.catwayNumber %></td>
-        <td><%= c.catwayType %></td>
-        <td><%= c.catwayState %></td>
-
-        <td>
-          <a href="/catways/edit/<%= c._id %>">✏️</a>
-          <form action="/catways/delete/<%= c._id %>" method="POST" style="display:inline">
-          <button onclick="return confirm('Supprimer ?')">🗑️</button>
-          </form>
-        </td>
+        <th>Numéro</th>
+        <th>Type</th>
+        <th>État</th>
+        <th>Actions</th>
       </tr>
-    <% }) %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% catways.forEach(c => { %>
+        <tr>
+          <td><%= c.catwayNumber %></td>
+          <td><%= c.catwayType %></td>
+          <td><%= c.catwayState %></td>
+
+          <td>
+            <a href="/catways/edit/<%= c._id %>">✏️</a>
+            <form action="/catways/delete/<%= c._id %>" method="POST" style="display:inline">
+            <button onclick="return confirm('Supprimer ?')">🗑️</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <%- include('../componements/footer') %>
 </body>
 </html>

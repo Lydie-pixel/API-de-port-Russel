@@ -18,7 +18,11 @@ exports.create = (data) => {
 
 // Modifier
 exports.update = (id, data) => {
-  return Reservation.findByIdAndUpdate(id, data, { new: true });
+  return Reservation.findByIdAndUpdate(
+    id,
+    data,
+    { new: true, runValidators: true }
+  );
 };
 
 // Supprimer

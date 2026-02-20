@@ -15,23 +15,22 @@ exports.renderCreateForm = (req, res) => {
   res.render("pages/formulaireCatway", { catway: null });
 };
 
-// Formulaire MODIFICATION (rempli)
+// Formulaire MODIFICATION
 exports.renderEditForm = async (req, res) => {
   try {
     const catway = await catwayService.getById(req.params.id);
 
     if (!catway) {
-      return res.status(404).send("Catway introuvable");
+      return res.redirect("/catways");
     }
 
     res.render("pages/formulaireCatway", { catway });
 
   } catch (err) {
-    res.status(500).send("Erreur serveur");
+    res.redirect("/catways");
   }
 };
-
-// Formulaire modification
+// Formulaire MODIFICATION (rempli)
 exports.updateCatway = async (req, res) => {
   try {
 
@@ -53,12 +52,12 @@ exports.updateCatway = async (req, res) => {
     res.status(400).send("Erreur modification");
   }
 };
-
-//JSON
+// API JSON
 // GET ALL
 exports.getAllCatways = async (req, res) => {
   try {
     const catways = await catwayService.getAll();
+
     res.json(catways);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -83,39 +82,19 @@ exports.getCatwayById = async (req, res) => {
 // POST
 exports.createCatway = async (req, res) => {
   try {
-    const catway = await catwayService.create(req.body);
-    res.status(201).json(catway);
+    await catwayService.create(req.body);
+    res.redirect("/catways");
   } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-};
-
-// PUT
-exports.updateCatway = async (req, res) => {
-  try {
-    const catway = await catwayService.update(req.params.id, req.body);
-
-    if (!catway) {
-      return res.status(404).json({ message: "Catway introuvable" });
-    }
-
-    res.json(catway);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(400).send("Erreur création");
   }
 };
 
 // DELETE
 exports.deleteCatway = async (req, res) => {
   try {
-    const catway = await catwayService.delete(req.params.id);
-
-    if (!catway) {
-      return res.status(404).json({ message: "Catway introuvable" });
-    }
-
-    res.status(204).send();
+    await catwayService.delete(req.params.id);
+    res.redirect("/catways");
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).send("Erreur suppression");
   }
 };

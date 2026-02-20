@@ -1,40 +1,52 @@
-<h1><%= catway ? "Modifier un catway" : "Ajouter un catway" %></h1>
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Catways</title>
+    <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+  </head>
+  <body>
+    <%- include('../componements/haeder') %>
+    <%- include('../componements/head') %>
+    <h2><%= catway ? "Modifier un catway" : "Ajouter un catway" %></h2>
 
-<form method="POST" action="<%= catway ? '/catways/' + catway._id : '/catways' %>">
+    <form method="POST" action="<%= catway ? '/catways/' + catway._id : '/catways' %>">
 
-  <label>Numéro</label>
-  <input 
-    type="number"
-    name="catwayNumber"
-    value="<%= catway ? catway.catwayNumber : '' %>"
-    required
-  >
+      <label>Numéro</label>
+      <input 
+        type="number"
+        name="catwayNumber"
+        value="<%= catway ? catway.catwayNumber : '' %>"
+        required
+      >
 
-  <label>Type</label>
-<select name="catwayType" required>
-  <option value="">-- Choisir --</option>
+      <label>Type</label>
+      <select name="catwayType" required>
+        <option value="">-- Choisir --</option>
 
-  <option value="short"
-    <%= catway && catway.catwayType === "short" ? "selected" : "" %>>
-    Short
-  </option>
+        <option value="short"
+          <%= catway && catway.catwayType === "short" ? "selected" : "" %>>
+          Short
+        </option>
 
-  <option value="long"
-    <%= catway && catway.catwayType === "long" ? "selected" : "" %>>
-    Long
-  </option>
-</select>
+        <option value="long"
+          <%= catway && catway.catwayType === "long" ? "selected" : "" %>>
+          Long
+        </option>
+      </select>
 
-  <label>État</label>
-  <input 
-    type="text"
-    name="catwayState"
-    value="<%= catway ? catway.state : '' %>"
-    required
-  >
+      <label>État</label>
+      <input 
+        type="text"
+        name="catwayState"
+        value="<%= catway ? catway.state : '' %>"
+        required
+      >
 
-  <button type="submit">
-    <%= catway ? "Modifier" : "Ajouter" %>
-  </button>
-
-</form>
+      <button type="submit">
+        <%= catway ? "Modifier" : "Ajouter" %>
+      </button>
+    </form>
+    <%- include('../componements/footer') %>
+  </body>
+</html>

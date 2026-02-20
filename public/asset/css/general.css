@@ -15,9 +15,28 @@ th {
     color: white;
 }
 
-h1 {
+h2 {
     text-align: center;
     color: #8064A2;
+}
+
+h3 {
+    text-align: center;
+}
+
+div{
+   display: flex; 
+}
+.connexion{
+    background: #f9f9f9;
+    border-radius: 6px;
+    flex-direction: row;
+}
+
+section{
+    width: 50%;
+    margin: 20px;
+    text-align: justify;
 }
 
 .btn-add {
@@ -38,6 +57,52 @@ h1 {
 form {
     width: 50%;
     margin: auto;
+    padding: auto;
     display: flex;
     flex-direction: column;
+}
+
+form button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+label {
+    margin: 10px;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #8064A2;
+    color: white;
+    margin-top: 40px;
+}
+
+a:link, a:visited {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+a:hover {
+    color: black;
+}
+
+.nav li {
+    list-style: none;
+    display: inline;
+    text-align: center;
+    margin-right: 20px;
+}
+
+nav {
+    background: #8064A2;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
 }
