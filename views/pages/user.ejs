@@ -9,6 +9,10 @@
 
 <h1>Liste des Utilisateurs</h1>
 
+<a href="/users/new" class="btn-add">
+  Ajouter un utilisateur
+</a>
+
 <table>
   <thead>
     <tr>
@@ -26,6 +30,12 @@
         <td><%= c.userName %></td>
         <td><%= c.userMail %></td>
         <td><%= c.userPassword %></td>
+      <td>
+          <a href="/users/edit/<%= c._id %>">✏️</a>
+          <form action="/users/delete/<%= c._id %>" method="POST" style="display:inline">
+          <button onclick="return confirm('Supprimer ?')">🗑️</button>
+          </form>
+        </td>
       </tr>
     <% }) %>
   </tbody>

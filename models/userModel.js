@@ -14,11 +14,6 @@ userName: {
 userMail: {
     type: String,
     required: true
-  },
-
-userPassword: {
-    type: String,
-    required: true
   }
 }, {
   timestamps: true
