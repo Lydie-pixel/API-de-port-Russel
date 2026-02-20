@@ -42,3 +42,64 @@ form {
     display: flex;
     flex-direction: column;
 }
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.Catway-form input {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.Catway-form button {
+    margin-top: 20px;
+    padding: 10px;
+    background: #8064A2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.Catway-form button:hover {
+    background: #6c5390;
+}
+
+.reservation-form input {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.reservation-form button {
+    margin-top: 20px;
+    padding: 10px;
+    background: #8064A2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.reservation-form button:hover {
+    background: #6c5390;
+}
+
+Catway{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+Reservation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}

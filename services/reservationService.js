@@ -1,4 +1,4 @@
-const User = require("../models/reservationModel");
+const Reservation = require("../models/reservationModel");
 
 // Lire toutes les réservations
 exports.getAll = () => {

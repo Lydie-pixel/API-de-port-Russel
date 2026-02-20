@@ -1,4 +1,4 @@
-const User = require("../models/catwayModel");
+const Catway = require("../models/catwayModel");
 
 // Lire tous les catways
 exports.getAll = () => {
