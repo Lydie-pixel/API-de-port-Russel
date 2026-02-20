@@ -1,4 +1,12 @@
-<h1><%= catway ? "Modifier un catway" : "Ajouter un catway" %></h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Catways</title>
+  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+</head>
+<body>
+  <h1><%= catway ? "Modifier un catway" : "Ajouter un catway" %></h1>
 
 <form method="POST" action="<%= catway ? '/catways/' + catway._id : '/catways' %>">
 
@@ -38,3 +46,4 @@
   </button>
 
 </form>
+</body>

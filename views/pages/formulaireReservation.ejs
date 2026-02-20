@@ -1,4 +1,13 @@
-<h1><%= reservation ? "Modifier une réservation" : "Ajouter une réservation" %></h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Catways</title>
+  <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+</head>
+<body>
+  
+  <h1><%= reservation ? "Modifier une réservation" : "Ajouter une réservation" %></h1>
 
 <form method="POST" action="<%= reservation ? '/reservations/' + reservation._id : '/reservations' %>">
 
@@ -47,3 +56,4 @@
   </button>
 
 </form>
+</body>

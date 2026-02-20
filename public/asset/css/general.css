@@ -38,6 +38,7 @@ h1 {
 form {
     width: 50%;
     margin: auto;
+    padding: auto;
     display: flex;
     flex-direction: column;
 }

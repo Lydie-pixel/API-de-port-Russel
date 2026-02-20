@@ -1,4 +1,4 @@
-const Reservation = require("../models/reservationModel");
+const User = require("../models/reservationModel");
 
 // Lire toutes les réservations
 exports.getAll = () => {
@@ -18,7 +18,11 @@ exports.create = (data) => {
 
 // Modifier
 exports.update = (id, data) => {
-  return Reservation.findByIdAndUpdate(id, data, { new: true });
+  return Reservation.findByIdAndUpdate(
+    id,
+    data,
+    { new: true, runValidators: true }
+  );
 };
 
 // Supprimer

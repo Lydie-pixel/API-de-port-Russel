@@ -37,7 +37,6 @@ exports.renderEditForm = async (req, res) => {
 // Formulaire modification
 exports.updateUser = async (req, res) => {
   try {
-    console.log("BODY:", req.body);
     const oldUser = await userService.getById(req.params.id);
 
     if (!oldUser) {

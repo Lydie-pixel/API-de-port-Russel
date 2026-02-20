@@ -3,30 +3,20 @@ const router = express.Router();
 
 const controller = require("../controllers/catwayController");
 
-// Page EJS
+// Liste
 router.get("/", controller.renderCatways);
 
-// Formulaire ajout
+// Formulaire
 router.get("/new", controller.renderCreateForm);
-
-// Formulaire édition
 router.get("/edit/:id", controller.renderEditForm);
 
-// Traitement ajout
+// Traitement
 router.post("/", controller.createCatway);
-
-// Traitement update
 router.post("/:id", controller.updateCatway);
-
-// Suppression
-router.post("/:id/delete", controller.deleteCatway);
-
+router.post("/delete/:id", controller.deleteCatway);
 
 // API
 router.get("/json", controller.getAllCatways);
 router.get("/json/:id", controller.getCatwayById);
-router.post("/json", controller.createCatway);
-router.put("/json/:id", controller.updateCatway);
-router.delete("/json/:id", controller.deleteCatway);
 
 module.exports = router;

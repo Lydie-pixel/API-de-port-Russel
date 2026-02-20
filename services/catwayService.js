@@ -1,4 +1,4 @@
-const Catway = require("../models/catwayModel");
+const User = require("../models/catwayModel");
 
 // Lire tous les catways
 exports.getAll = () => {
@@ -18,7 +18,11 @@ exports.create = (data) => {
 
 // Modifier
 exports.update = (id, data) => {
-  return Catway.findByIdAndUpdate(id, data, { new: true });
+  return Catway.findByIdAndUpdate(
+    id,
+    data,
+    { new: true, runValidators: true }
+  );
 };
 
 // Supprimer
