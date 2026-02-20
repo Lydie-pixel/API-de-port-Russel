@@ -1,7 +1,8 @@
 <h1><%= user ? "Modifier un utilisateur" : "Ajouter un utilisateur" %></h1>
 
 <form method="POST" action="<%= user ? '/users/' + user._id : '/users' %>">
-
+   <input type="hidden" name="_debug" value="ok">
+   
   <label>Nom</label>
   <input 
     type="text"

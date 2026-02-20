@@ -59,7 +59,7 @@ exports.updateCatway = async (req, res) => {
 exports.getAllCatways = async (req, res) => {
   try {
     const catways = await catwayService.getAll();
-    res.json(catways);
+    res.redirect("/catways");
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

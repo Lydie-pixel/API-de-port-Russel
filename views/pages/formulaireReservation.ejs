@@ -27,18 +27,18 @@
   >
 
     <label>Date de début de location</label>
-  <input 
-    type="date"
-    name="startDate"
-    value="<%= reservation ? reservation.startDate : '' %>"
-    required
+<input
+  type="date"
+  name="startDate"
+  value="<%= reservation ? reservation.startDate.toISOString().split('T')[0] : '' %>"
+  required
   >
 
     <label>Date de fin de location</label>
   <input 
     type="date"
     name="endDate"
-    value="<%= reservation ? reservation.endDate : '' %>"
+    value="<%= reservation ? reservation.endDate.toISOString().split('T')[0] : '' %>"
     required
   >
 

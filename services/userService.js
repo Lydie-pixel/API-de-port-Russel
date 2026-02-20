@@ -18,7 +18,11 @@ exports.create = (data) => {
 
 // Modifier
 exports.update = (id, data) => {
-  return User.findByIdAndUpdate(id, data, { new: true });
+  return User.findByIdAndUpdate(
+    id,
+    data,
+    { new: true, runValidators: true }
+  );
 };
 
 // Supprimer

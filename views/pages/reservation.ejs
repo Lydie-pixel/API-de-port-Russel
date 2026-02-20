@@ -21,6 +21,7 @@
         <th>Nom du bateau</th>
         <th>Date de début de réservation</th>
         <th>Date de fin de réservation</th>
+        <th>Actions</th>
     </tr>
   </thead>
 
@@ -30,8 +31,8 @@
         <td><%= c.catwayNumber %></td>
         <td><%= c.clientName %></td>
         <td><%= c.boatName %></td>
-        <td><%= c.startDate %></td>
-        <td><%= c.endDate %></td>
+        <td><%= c.startDate.toLocaleDateString("fr-FR") %></td>
+        <td><%= c.endDate.toLocaleDateString("fr-FR") %></td>
       <td>
           <a href="/reservations/edit/<%= c._id %>">✏️</a>
           <form action="/reservations/delete/<%= c._id %>" method="POST" style="display:inline">

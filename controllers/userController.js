@@ -37,14 +37,14 @@ exports.renderEditForm = async (req, res) => {
 // Formulaire modification
 exports.updateUser = async (req, res) => {
   try {
-
+    console.log("BODY:", req.body);
     const oldUser = await userService.getById(req.params.id);
 
     if (!oldUser) {
       return res.status(404).send("Utilisateur introuvable");
     }
 
-    const user = await userService.update(req.params.id, req.body);
+    await userService.update(req.params.id, req.body);
 
     res.redirect("/users");
 
@@ -90,27 +90,12 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// PUT
-exports.updateUser = async (req, res) => {
-  try {
-    const user = await userService.update(req.params.id, req.body);
-    res.redirect("/users");
-  } catch (err) {
-    res.status(400).send("Erreur modification");
-  }
-};
-
 // DELETE
 exports.deleteUser = async (req, res) => {
   try {
-    const user = await userService.delete(req.params.id);
-
-    if (!user) {
-      return res.status(404).json({ message: "Utilisateur introuvable" });
-    }
-
-    res.status(204).send();
+    await userService.delete(req.params.id);
+    res.redirect("/users");
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).send("Erreur suppression");
   }
 };

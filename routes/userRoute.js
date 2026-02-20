@@ -3,30 +3,20 @@ const router = express.Router();
 
 const controller = require("../controllers/userController");
 
-// Page EJS
+// Liste
 router.get("/", controller.renderUsers);
 
-// Formulaire ajout
+// Formulaire
 router.get("/new", controller.renderCreateForm);
-
-// Formulaire édition
 router.get("/edit/:id", controller.renderEditForm);
 
-// Traitement ajout
+// Traitement
 router.post("/", controller.createUser);
-
-// Traitement update
 router.post("/:id", controller.updateUser);
-
-// Suppression
-router.post("/:id/delete", controller.deleteUser);
-
+router.post("/delete/:id", controller.deleteUser);
 
 // API
 router.get("/json", controller.getAllUsers);
 router.get("/json/:id", controller.getUserById);
-router.post("/json", controller.createUser);
-router.put("/json/:id", controller.updateUser);
-router.delete("/json/:id", controller.deleteUser);
 
 module.exports = router;

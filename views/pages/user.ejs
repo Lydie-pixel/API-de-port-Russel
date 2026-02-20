@@ -19,7 +19,7 @@
         <th>Nom</th>
         <th>Nom de l'utilisateur</th>
         <th>Mail</th>
-        <th>Mot de passe</th>
+        <th>Actions</th>
     </tr>
   </thead>
 
@@ -29,7 +29,6 @@
         <td><%= c.name %></td>
         <td><%= c.userName %></td>
         <td><%= c.userMail %></td>
-        <td><%= c.userPassword %></td>
       <td>
           <a href="/users/edit/<%= c._id %>">✏️</a>
           <form action="/users/delete/<%= c._id %>" method="POST" style="display:inline">
