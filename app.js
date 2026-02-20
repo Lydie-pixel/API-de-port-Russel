@@ -2,6 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const app = express();
+const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
 
 // Middleware
 app.use(express.json());
@@ -12,6 +15,9 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect("mongodb+srv://Lydie:Lareunion974!@russel.qrx53bn.mongodb.net/?appName=Russel")
   .then(() => console.log(" MongoDB connecté"))
   .catch(err => console.error("Erreur MongoDB :", err));
+
+// Middleware d'authentification
+const auth = require("./middlewares/auth");
 
 //Views avec EJS
 const path = require("path");
@@ -28,10 +34,10 @@ const dashboardRoute = require("./routes/dashboardRoute");
 
 // Pages EJS
 app.use("/", indexRoute);
-app.use("/catways", catwayRoutes);
-app.use("/users", userRoutes);
-app.use("/reservations", reservationRoutes);
-app.use("/", dashboardRoute);
+app.use("/catways", auth, catwayRoutes);
+app.use("/users", auth, userRoutes);
+app.use("/reservations", auth, reservationRoutes);
+app.use("/",auth, dashboardRoute);
 
 // API
 app.use("/api/catways", catwayRoutes);
