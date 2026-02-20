@@ -1,5 +1,5 @@
 const userService = require("../services/userService");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // Page HTML
@@ -39,17 +39,6 @@ exports.register = async (req, res) => {
     res.status(400).send("Erreur inscription");
   }
 };
-
-    // Création du token
-    const token = jwt.sign(
-      { id: user._id },
-      "SECRET_KEY",
-      { expiresIn: "2h" }
-    );
-
-    res.cookie("token", token);
-    res.redirect("/dashboard");
-
 
 exports.logout = (req, res) => {
   res.clearCookie("token");

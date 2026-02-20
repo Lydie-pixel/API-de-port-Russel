@@ -1,22 +1,24 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = (req, res, next) => {
 
-  const token = req.cookies.token;
+function authenticateToken(req, res, next) {
+  const token = req.cookies?.token || req.headers["authorization"]?.split(" ")[1];
 
   if (!token) {
-    return res.redirect("/");
+    req.user = null;
+    return next();
   }
 
   try {
-
-    const decoded = jwt.verify(token, "SECRET_KEY");
-
-    req.user = decoded;
-
-    next();
-
-  } catch {
-    res.redirect("/");
+    // Vérifie le token 
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "SECRET_KEY");
+    req.user = decoded; 
+  } catch (err) {
+    // Token invalide → considère l'utilisateur comme non connecté
+    req.user = null;
   }
-};
+
+  next();
+}
+
+module.exports = authenticateToken;

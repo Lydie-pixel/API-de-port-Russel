@@ -30,25 +30,3 @@ exports.login = async (req, res) => {
     res.status(500).send("Erreur login");
   }
 };
-
-// Changer de mot de passe
-exports.changePassword = async (req, res) => {
-
-  const { oldPass, newPass } = req.body;
-
-  const user = await userService.getById(req.user.id);
-
-  const ok = await bcrypt.compare(oldPass, user.password);
-
-  if (!ok) {
-    return res.send("Ancien mot de passe incorrect");
-  }
-
-  const hashed = await bcrypt.hash(newPass, 10);
-
-  await userService.update(req.user.id, {
-    password: hashed
-  });
-
-  res.redirect("/users/profile");
-};
