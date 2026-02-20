@@ -9,6 +9,45 @@ exports.renderReservations = async (req, res) => {
     res.status(500).send("Erreur serveur");
   }
 };
+// Formulaire AJOUT (vide)
+exports.renderCreateForm = (req, res) => {
+  res.render("pages/formulaireReservation", { reservation: null });
+};
+
+// Formulaire MODIFICATION (rempli)
+exports.renderEditForm = async (req, res) => {
+  try {
+    const reservation = await reservationService.getById(req.params.id);
+
+    if (!reservation) {
+      return res.status(404).send("Réservation introuvable");
+    }
+
+    res.render("pages/formulaireReservation", { reservation });
+
+  } catch (err) {
+    res.status(500).send("Erreur serveur");
+  }
+};
+
+// Formulaire modification
+exports.updateReservation = async (req, res) => {
+  try {
+
+    const oldReservation = await reservationService.getById(req.params.id);
+
+    if (!oldReservation) {
+      return res.status(404).send("Réservation introuvable");
+    }
+
+    const reservation = await reservationService.update(req.params.id, req.body);
+
+    res.redirect("/reservations");
+
+  } catch (err) {
+    res.status(400).send("Erreur modification");
+  }
+};
 
 // API JSON
 // GET ALL

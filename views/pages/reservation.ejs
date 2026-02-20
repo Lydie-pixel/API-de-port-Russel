@@ -9,6 +9,10 @@
 
 <h1>Liste des Réservations</h1>
 
+<a href="/reservations/new" class="btn-add">
+  Ajouter une réservation
+</a>
+
 <table>
   <thead>
     <tr>
@@ -28,6 +32,12 @@
         <td><%= c.boatName %></td>
         <td><%= c.startDate %></td>
         <td><%= c.endDate %></td>
+      <td>
+          <a href="/reservations/edit/<%= c._id %>">✏️</a>
+          <form action="/reservations/delete/<%= c._id %>" method="POST" style="display:inline">
+          <button onclick="return confirm('Supprimer ?')">🗑️</button>
+          </form>
+        </td>
       </tr>
     <% }) %>
   </tbody>

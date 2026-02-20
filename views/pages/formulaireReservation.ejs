@@ -1,0 +1,49 @@
+<h1><%= reservation ? "Modifier une réservation" : "Ajouter une réservation" %></h1>
+
+<form method="POST" action="<%= reservation ? '/reservations/' + reservation._id : '/reservations' %>">
+
+  <label>Numéro du Catway</label>
+  <input 
+    type="number"
+    name="catwayNumber"
+    value="<%= reservation ? reservation.catwayNumber : '' %>"
+    required
+  >
+
+  <label>Nom du client</label>
+  <input 
+    type="text"
+    name="clientName"
+    value="<%= reservation ? reservation.clientName : '' %>"
+    required
+  >
+
+  <label>Nom du bateau</label>
+  <input 
+    type="text"
+    name="boatName"
+    value="<%= reservation ? reservation.boatName : '' %>"
+    required
+  >
+
+    <label>Date de début de location</label>
+  <input 
+    type="date"
+    name="startDate"
+    value="<%= reservation ? reservation.startDate : '' %>"
+    required
+  >
+
+    <label>Date de fin de location</label>
+  <input 
+    type="date"
+    name="endDate"
+    value="<%= reservation ? reservation.endDate : '' %>"
+    required
+  >
+
+  <button type="submit">
+    <%= reservation ? "Modifier" : "Ajouter" %>
+  </button>
+
+</form>
