@@ -1,14 +1,20 @@
+const userService = require("../services/userService");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 exports.login = async (req, res) => {
   try {
-    const { userMail, password } = req.body;
-
-    const user = await userService.findByEmail(userMail);
+    //const { userName, password } = req.body;
+    const userName = "a";
+    const password = "S!IInovaTest3";
+    const user = await userService.findByUserName(userName);
 
     if (!user) {
       return res.send("Utilisateur inconnu");
     }
-
-    const isValid = await bcrypt.compare(password, user.password);
+    console.log("password:", password);
+    console.log("user.password:", user.passwordHash);
+    const isValid = await bcrypt.compare(password, user.passwordHash);
 
     if (!isValid) {
       return res.send("Mot de passe incorrect");
@@ -27,6 +33,6 @@ exports.login = async (req, res) => {
     res.redirect("/dashboard");
 
   } catch (err) {
-    res.status(500).send("Erreur login");
+    res.status(500).send(err.message);
   }
 };

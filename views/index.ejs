@@ -35,12 +35,13 @@
       <h3>Contact</h3>
       <p>Pour toute question ou problème concernant l'API du Port Russel, veuillez contacter l'administrateur du système</p>
     </section>
+
     <section class="connexion">
       <h3>Connexion</h3>
       <p>Pour vous connecter à l'API, veuillez utiliser les identifiants fournis par l'administrateur du système.</p>
-      <form>
-        <label for="username">Nom d'utilisateur:</label>
-        <input type="text" id="username" name="username" required>
+      <form method="POST" action="/login">
+        <label for="userName">Nom d'utilisateur:</label>
+        <input type="text" id="userName" name="userName" required>
 
         <label for="password">Mot de passe:</label>
         <input type="password" id="password" name="password" required>

@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const bcrypt = require("bcryptjs");
 
 // Lire tous les utilisateurs
 exports.getAll = () => {
@@ -10,10 +11,22 @@ exports.getById = (id) => {
   return User.findById(id);
 };
 
+// Lire un utilisateur
+exports.findByUserName = (userName) => {
+  return User.findOne({ userName :userName });
+};
+
 // Créer
 exports.create = (data) => {
+  const salt = bcrypt.genSaltSync(10);
+data.passwordHash = bcrypt.hashSync(data.password, salt);
+  try{
   const user = new User(data);
   return user.save();
+  } catch (err) {
+    console.error("Erreur lors de la création de l'utilisateur:", err);
+  }
+    
 };
 
 // Modifier

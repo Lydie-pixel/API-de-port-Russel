@@ -16,9 +16,20 @@ userMail: {
     required: true
   },
 
+passwordHash: {
+    type: String,
+    required: false
+  },
+
 password: {
   type: String,
-  required: true
+  required: true,
+  validate: {
+    validator: function(v) {
+      return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{11,}$/.test(v);
+    },
+    message: "Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial."
+  }
 },
 
 role: {

@@ -23,14 +23,12 @@ exports.register = async (req, res) => {
   try {
     const { name, userName, userMail, password } = req.body;
 
-    // Hash du mot de passe
-    const hashedPassword = await bcrypt.hash(password, 10);
 
     await userService.create({
       name,
       userName,
       userMail,
-      password: hashedPassword
+      password
     });
 
     res.redirect("/login");
@@ -120,6 +118,7 @@ exports.createUser = async (req, res) => {
     await userService.create(req.body);
     res.redirect("/users");
   } catch (err) {
+    console.error("Erreur lors de la création de l'utilisateur:", err);
     res.status(400).send("Erreur création");
   }
 };
