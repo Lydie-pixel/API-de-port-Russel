@@ -37,6 +37,13 @@ section {
     text-align: center;
     align-items: center;
 }
+
+.port-image {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
 .connexion{
     background: #f9f9f9;
     border-radius: 6px;
