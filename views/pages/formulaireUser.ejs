@@ -44,7 +44,13 @@
         name="userMail"
         value="<%= user ? user.userMail : '' %>"
         required
-      >
+      >,
+
+      <label>role</label>
+      <select name="role" required>
+        <option value="user" <%= user && user.role === "user" ? "selected" : "" %>>User</option>
+        <option value="admin" <%= user && user.role === "admin" ? "selected" : "" %>>Admin</option>
+      </select>
 
       <button type="submit">
         <%= user ? "Modifier" : "Ajouter" %>

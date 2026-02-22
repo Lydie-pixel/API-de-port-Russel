@@ -4,12 +4,12 @@
     <li><a href="/dashboard">Tableau de bord</a></li>
     <li><a href="/catways">Catways</a></li>
     <li><a href="/reservations">Réservations</a></li>
+    <li><a href="/profil">Mon compte</a></li>
     <!-- Affichage conditionnel pour les utilisateurs connectés -->
-    <li>
+   <li>
       <% if (user && user.role === "admin") { %>
         <a href="/users">Utilisateurs</a>
       <% } %>
-      <a href="/users/profile">Mon compte</a>
     </li>
   </ul>
   <% if (user) { %>

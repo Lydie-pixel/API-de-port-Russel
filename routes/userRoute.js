@@ -9,9 +9,6 @@ const admin = require("../middlewares/admin");
 router.get("/", auth, admin, controller.renderUsers);
 router.get("/profil", auth, controller.renderProfile);
 
-// Liste
-router.get("/", controller.renderUsers);
-
 // Formulaire
 router.get("/new", controller.renderCreateForm);
 router.get("/edit/:id", controller.renderEditForm);
@@ -26,7 +23,7 @@ router.get("/json", controller.getAllUsers);
 router.get("/json/:id", controller.getUserById);
 
 // Profil utilisateur
-router.get("/profile", auth, controller.renderProfile);
+router.get("/profil", auth, controller.renderProfile);
 
 // Déconnexion
 router.get("/logout", controller.logout);

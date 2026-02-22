@@ -4,22 +4,33 @@ const jwt = require("jsonwebtoken");
 
 exports.login = async (req, res) => {
   try {
-    //const { userName, password } = req.body;
-    const userName = "a";
-    const password = "S!IInovaTest3";
+
+    // On récupère les champs du formulaire
+    const { userName, password } = req.body;
+
+    // Vérification
+    if (!userName || !password) {
+      return res.send("Champs manquants");
+    }
+
+    // Cherche l'utilisateur
     const user = await userService.findByUserName(userName);
 
     if (!user) {
       return res.send("Utilisateur inconnu");
     }
-    console.log("password:", password);
-    console.log("user.password:", user.passwordHash);
-    const isValid = await bcrypt.compare(password, user.passwordHash);
+
+    // Vérifie mot de passe
+    const isValid = await bcrypt.compare(
+      password,
+      user.passwordHash
+    );
 
     if (!isValid) {
       return res.send("Mot de passe incorrect");
     }
 
+    // Création du token
     const token = jwt.sign(
       {
         id: user._id,
@@ -29,10 +40,15 @@ exports.login = async (req, res) => {
       { expiresIn: "2h" }
     );
 
-    res.cookie("token", token);
+    // Cookie
+    res.cookie("token", token, {
+      httpOnly: true
+    });
+
     res.redirect("/dashboard");
 
   } catch (err) {
-    res.status(500).send(err.message);
+    console.error(err);
+    res.status(500).send("Erreur login");
   }
 };
