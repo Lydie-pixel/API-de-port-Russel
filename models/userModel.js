@@ -16,10 +16,10 @@ userMail: {
     required: true
   },
 
-password: {
-  type: String,
-  required: true
-},
+passwordHash: {
+    type: String,
+    required: false
+  },
 
 role: {
   type: String,

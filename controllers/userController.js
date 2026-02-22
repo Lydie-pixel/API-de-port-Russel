@@ -23,14 +23,12 @@ exports.register = async (req, res) => {
   try {
     const { name, userName, userMail, password } = req.body;
 
-    // Hash du mot de passe
-    const hashedPassword = await bcrypt.hash(password, 10);
 
     await userService.create({
       name,
       userName,
       userMail,
-      password: hashedPassword
+      password
     });
 
     res.redirect("/login");
@@ -47,7 +45,7 @@ exports.logout = (req, res) => {
 
 // Formulaire AJOUT (vide)
 exports.renderCreateForm = (req, res) => {
-  res.render("pages/formulaireUser", { user: null });
+  res.render("pages/formulaireUser", { user: null,error:null });
 };
 
 // Formulaire MODIFICATION (rempli)
@@ -61,7 +59,8 @@ exports.renderEditForm = async (req, res) => {
     }
 
     res.render("pages/formulaireUser", {
-      user
+      user,
+      error: null
     });
 
   } catch (err) {
@@ -105,22 +104,32 @@ exports.getUserById = async (req, res) => {
     const user = await userService.getById(req.params.id);
 
     if (!user) {
-      return res.status(404).json({ message: "Utilisateur introuvable" });
+      return res.status(404).json({ alert: "Utilisateur introuvable" });
     }
 
     res.json(user);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ alert: err.message });
   }
 };
 
 // POST
 exports.createUser = async (req, res) => {
   try {
-    await userService.create(req.body);
-    res.redirect("/users");
+    const ret = await userService.create(req.body);
+    if(ret.error) {
+      res.render("pages/formulaireUser", {
+        error: ret.error,
+        user: ret.data
+      });
+    }else{
+      res.redirect("/users");
+    }
   } catch (err) {
-    res.status(400).send("Erreur création");
+      res.render("pages/formulaireUser", {
+        error: err.message,
+        user: ret.data
+    });
   }
 };
 

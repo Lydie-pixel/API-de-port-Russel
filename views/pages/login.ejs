@@ -1,0 +1,27 @@
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
+    </head>
+    <body>
+<%- include('../componements/haeder') %>
+    
+    <section class="connexion">
+      <h3>Connexion</h3>
+      <p>Pour vous connecter à l'API, veuillez utiliser les identifiants fournis par l'administrateur du système.</p>
+      <form method="POST" action="/login">
+        <label for="userName">Nom d'utilisateur:</label>
+        <input type="text" id="userName" name="userName" required>
+
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="window.location.href='/';">Annuler</button>
+        <button type="submit">Se connecter</button>
+      </form>
+    </section>
+ <%- include('../componements/footer') %>           
+    </body>
+    </html>

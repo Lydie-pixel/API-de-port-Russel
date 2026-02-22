@@ -31,10 +31,20 @@ h4 {
 div{
    display: flex; 
 }
+section {
+    border-radius: 6px;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+}
 .connexion{
     background: #f9f9f9;
     border-radius: 6px;
     flex-direction: row;
+}
+
+.presentation {
+    background: #f9f9f9;
 }
 
 section{
@@ -140,5 +150,24 @@ nav {
     background: #8064A2;
     padding: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nav-right {
+    justify-content: right;
+    gap: 20px;
+}
+
+#nom {
+    text-align: left;
+    display: block;
+    font-weight: bold;
+    color: black;
+}
+
+#date {
+    text-align: right;
+    font-size: 14px;
+    color: #555;
 }

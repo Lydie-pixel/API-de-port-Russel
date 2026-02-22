@@ -18,6 +18,11 @@ mongoose.connect("mongodb+srv://Lydie:Lareunion974!@russel.qrx53bn.mongodb.net/?
 
 // Middleware d'authentification
 const auth = require("./middlewares/auth");
+app.use(auth);
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 //Views avec EJS
 const path = require("path");
@@ -31,9 +36,11 @@ const catwayRoutes = require("./routes/catwayRoute");
 const reservationRoutes = require("./routes/reservationRoute");
 const userRoutes = require("./routes/userRoute");
 const dashboardRoute = require("./routes/dashboardRoute");
+const authRoutes = require("./routes/authRoute");
 
 // Pages EJS
 app.use("/", indexRoute);
+app.use("/", authRoutes);
 app.use("/catways", auth, catwayRoutes);
 app.use("/users", auth, userRoutes);
 app.use("/reservations", auth, reservationRoutes);
