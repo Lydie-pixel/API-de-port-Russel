@@ -18,13 +18,23 @@ exports.findByUserName = (userName) => {
 
 // Créer
 exports.create = (data) => {
+  const alFieldsOk = true;
+
+  if (!data.name || !data.userName || !data.userMail || !data.password) {
+    return { error: "Tous les champs sont requis.",data : data };
+  }else if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{11,}$/.test(data.password)) {
+    return { error: "Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.",data:data };
+  }
+
+
   const salt = bcrypt.genSaltSync(10);
 data.passwordHash = bcrypt.hashSync(data.password, salt);
   try{
   const user = new User(data);
   return user.save();
   } catch (err) {
-    console.error("Erreur lors de la création de l'utilisateur:", err);
+    //console.error("Erreur lors de la création de l'utilisateur:", err);
+    return {error: err.message,data:data};
   }
     
 };

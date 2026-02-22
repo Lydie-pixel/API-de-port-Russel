@@ -45,7 +45,7 @@ exports.logout = (req, res) => {
 
 // Formulaire AJOUT (vide)
 exports.renderCreateForm = (req, res) => {
-  res.render("pages/formulaireUser", { user: null });
+  res.render("pages/formulaireUser", { user: null,error:null });
 };
 
 // Formulaire MODIFICATION (rempli)
@@ -59,7 +59,8 @@ exports.renderEditForm = async (req, res) => {
     }
 
     res.render("pages/formulaireUser", {
-      user
+      user,
+      error: null
     });
 
   } catch (err) {
@@ -115,11 +116,20 @@ exports.getUserById = async (req, res) => {
 // POST
 exports.createUser = async (req, res) => {
   try {
-    await userService.create(req.body);
-    res.redirect("/users");
+    const ret = await userService.create(req.body);
+    if(ret.error) {
+      res.render("pages/formulaireUser", {
+        error: ret.error,
+        user: ret.data
+      });
+    }else{
+      res.redirect("/users");
+    }
   } catch (err) {
-    console.error("Erreur lors de la création de l'utilisateur:", err);
-    res.status(400).send("Erreur création");
+      res.render("pages/formulaireUser", {
+        error: err.message,
+        user: ret.data
+    });
   }
 };
 

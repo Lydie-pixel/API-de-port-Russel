@@ -13,8 +13,8 @@
 
     <form method="POST" action="<%= user ? '/users/' + user._id : '/users' %>">
       <input type="hidden" name="_debug" value="ok">
-      
       <label>Nom</label>
+      <label>prout : <%= error != null ? error : '' %></label>
       <input 
         type="text"
         name="name"
@@ -35,6 +35,7 @@
         type="text"
         name="password"
         value="<%= user ? user.password : '' %>"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{11,}$"
         required
       >
 
