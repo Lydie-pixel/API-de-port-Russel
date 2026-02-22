@@ -12,6 +12,11 @@ exports.getById = (id) => {
 
 // Créer
 exports.create = (data) => {
+  const alFieldsOk = true;
+  
+   if (!data.name || !data.description) {
+    return { error: "Tous les champs sont requis.",data : data };
+  }
   const reservation = new Reservation(data);
   return reservation.save();
 };

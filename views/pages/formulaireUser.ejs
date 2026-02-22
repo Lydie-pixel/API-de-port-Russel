@@ -14,7 +14,6 @@
     <form method="POST" action="<%= user ? '/users/' + user._id : '/users' %>">
       <input type="hidden" name="_debug" value="ok">
       <label>Nom</label>
-      <label>prout : <%= error != null ? error : '' %></label>
       <input 
         type="text"
         name="name"
@@ -29,15 +28,15 @@
         value="<%= user ? user.userName : '' %>"
         required
       >
-
-      <label>password</label>
+    
+      <label>Mot de passe</label>
       <input 
         type="text"
         name="password"
         value="<%= user ? user.password : '' %>"
         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{11,}$"
         required
-      >
+      ><sub>Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.</sub>
 
       <label>Email</label>
       <input 
@@ -56,6 +55,7 @@
       <button type="submit">
         <%= user ? "Modifier" : "Ajouter" %>
       </button>
+       <button type="button" onclick="window.location.href='/users';">Annuler</button>
     </form>
     <%- include('../componements/footer') %>
   </body>

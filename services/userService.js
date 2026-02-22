@@ -33,7 +33,7 @@ data.passwordHash = bcrypt.hashSync(data.password, salt);
   const user = new User(data);
   return user.save();
   } catch (err) {
-    //console.error("Erreur lors de la création de l'utilisateur:", err);
+    alert("Erreur lors de la création de l'utilisateur: " + err.message);
     return {error: err.message,data:data};
   }
     
