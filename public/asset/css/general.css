@@ -1,6 +1,6 @@
 table {
     border-collapse: collapse;
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 
@@ -13,6 +13,12 @@ th, td {
 th {
     background: #8064A2;
     color: white;
+}
+
+h1 {
+    text-align: center;
+    color: blue;
+    font-size: xx-large;
 }
 
 h2 {
@@ -28,9 +34,11 @@ h4 {
     text-align: center;
     color: #8064A2;
 }
+
 div{
    display: flex; 
 }
+
 section {
     border-radius: 6px;
     flex-direction: row;
@@ -38,7 +46,16 @@ section {
     align-items: center;
 }
 
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
 .port-image {
+    flex-direction: column;
     width: 100%;
     height: auto;
     border-radius: 6px;
@@ -111,7 +128,7 @@ label {
   align-items: center;
   padding: 10px;
   border-radius: 10px;
-  width: 33%;
+  width: 20%;
   text-align: center;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
