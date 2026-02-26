@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title><%= title %></title>
+  <title>Port Russel</title>
   <link rel="stylesheet" type="text/css" href="/asset/css/general.css">
 </head>
 
@@ -10,7 +10,7 @@
 <%- include('./componements/haeder') %>
 <%- include('./componements/head') %>
 
-  <h2><%= title %></h2>
+  <h2>Port Russel</h2>
   <div class="container">
     <section class="presentation">
       <h3>Bienvenue sur l’API du Port Russel</h3>
@@ -35,10 +35,22 @@
       <h3>Contact</h3>
       <p>Pour toute question ou problème concernant l'API du Port Russel, veuillez contacter l'administrateur du système</p>
     </section>
-    <section>
-      <img src="/asset/img/port.jpg" alt="Image du port Russel" class="port-image">
+        <section class="connexion">
+      <h3>Connexion</h3>
+      <p>Pour vous connecter à l'API, veuillez utiliser les identifiants fournis par l'administrateur du système.</p>
+      <form method="POST" action="/login">
+        <label for="userName">Nom d'utilisateur:</label>
+        <input type="text" id="userName" name="userName" required>
+
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="window.location.href='/';">Annuler</button>
+        <button type="submit">Se connecter</button>
+      </form>
     </section>
   </div>
+      <img src="/asset/img/port.jpg" alt="Image du port Russel" class="port-image">
 </body>
 <%- include('./componements/footer') %>
 </html>

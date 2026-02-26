@@ -29,6 +29,7 @@
         required
       >
     
+      <% if (!user) { %>
       <label>Mot de passe</label>
       <input 
         type="text"
@@ -36,7 +37,8 @@
         value="<%= user ? user.password : '' %>"
         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{11,}$"
         required
-      ><sub>Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.</sub>
+      ><% } %>
+      <sub>Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.</sub>
 
       <label>Email</label>
       <input 

@@ -5,33 +5,26 @@
   <title>Tableau de bord</title>
   <link rel="stylesheet" href="/asset/css/general.css">
 </head>
+
 <body>
   <%- include('../componements/haeder') %>
   <%- include('../componements/head') %>
   <h2>Tableau de bord</h2>
-  <div class="content">
-    <section>
       <h3>Statistiques</h3>
-      <div class="stats">
-        <div class="card">
+    <div id="stats">
+        <section class="card">
           <h4>Catways</h4>
-          <p><%= totalCatways %></p>
-        </div>
-
-        <div class="card">
-          <h4>Réservations</h4> 
-          <p><%= totalReservations %></p>
-        </div>
-
-        <div class="card">
-          <h4>En cours</h4>
-          <p><%= activeReservations %></p>
-        </div>
-      </div>
-    </section> 
+          <p id="stat-catways">...</p>
+        </section>
+        <section class="card">
+          <h4>Réservations</h4>
+          <p id="stat-reservations">...</p>
+        </section>
+      </section>
+    </div>
+    <div class="content">
     <section>
-    <h3>Prochaines arrivées</h3>
-
+    <h3>Réservation en cours</h3>
     <table>
       <tr>
         <th>Client</th>
@@ -39,18 +32,80 @@
         <th>Début</th>
         <th>Fin</th>
       </tr>
-
-      <% upcoming.forEach(r => { %>
-        <tr>
-          <td><%= r.clientName %></td>
-          <td><%= r.boatName %></td>
-          <td><%= r.startDate.toLocaleDateString() %></td>
-          <td><%= r.endDate.toLocaleDateString() %></td>
-        </tr>
-      <% }) %>
+      <tbody id="current-table"></tbody>
+    </table>
+    </section>
+    <section>
+    <h3>Prochaines arrivées</h3>
+    <table>
+      <tr>
+        <th>Client</th>
+        <th>Bateau</th>
+        <th>Début</th>
+        <th>Fin</th>
+      </tr>
+      <tbody id="upcoming-table"></tbody>
     </table>
     </section>
   </div>
   <%- include('../componements/footer') %>
+  <script>
+    async function loadDashboard() {
+    try {
+
+      const response = await fetch("/dashboard/api");
+      const data = await response.json();
+      console.log("DATA DASHBOARD:", data);
+
+      // Stats
+      document.getElementById("stat-catways").innerText =
+        data.totalCatways;
+
+      document.getElementById("stat-reservations").innerText =
+        data.totalReservations;
+
+      // Réservations en cours
+      const currentTable = document.getElementById("current-table");
+      currentTable.innerHTML = "";
+
+      data.active.forEach(r => {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${r.clientName}</td>
+          <td>${r.boatName}</td>
+          <td>${new Date(r.startDate).toLocaleDateString()}</td>
+          <td>${new Date(r.endDate).toLocaleDateString()}</td>
+        `;
+
+        currentTable.appendChild(row);
+      });
+
+      // Prochaines réservations
+      const upcomingTable = document.getElementById("upcoming-table");
+      upcomingTable.innerHTML = "";
+
+      data.upcoming.forEach(r => {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${r.clientName}</td>
+          <td>${r.boatName}</td>
+          <td>${new Date(r.startDate).toLocaleDateString()}</td>
+          <td>${new Date(r.endDate).toLocaleDateString()}</td>
+        `;
+
+        upcomingTable.appendChild(row);
+      });
+
+    } catch (err) {
+      console.error("Erreur dashboard :", err);
+    }
+  }
+
+  loadDashboard();
+  </script>
 </body>
 </html>
