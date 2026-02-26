@@ -1,3 +1,7 @@
+/**
+ * Service de gestion des utilisateurs
+ * Communication avec MongoDB
+ */
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 
@@ -17,36 +21,70 @@ exports.findByUserName = (userName) => {
 };
 
 // Créer
-exports.create = (data) => {
-  const alFieldsOk = true;
-
+exports.create = async (data) => {
   if (!data.name || !data.userName || !data.userMail || !data.password) {
-    return { error: "Tous les champs sont requis.",data : data };
-  }else if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{11,}$/.test(data.password)) {
-    return { error: "Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.",data:data };
+    throw new Error("Tous les champs sont requis.");
   }
 
+  // Email valide
+  const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const salt = bcrypt.genSaltSync(10);
-data.passwordHash = bcrypt.hashSync(data.password, salt);
-  try{
+  if (!mailRegex.test(data.userMail)) {
+    throw new Error("Adresse email invalide");
+  }
+
+  // Mot de passe fort
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&§#€£+=\-_.])[A-Za-z\d@$!%*?&§#€£+=\-_.]{12,}$/;
+
+  if (!passwordRegex.test(data.password)) {
+    throw new Error(
+      "Mot de passe trop faible (12 caractères, majuscule, minuscule, chiffre, spécial)"
+    );
+  }
+
+  // Username unique
+  const existing = await User.findOne({ userName: data.userName });
+
+  if (existing) {
+    throw new Error("Ce nom d'utilisateur existe déjà");
+  }
+
+  // Hash
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(data.password, salt);
+
+  data.passwordHash = hash;
+  delete data.password;
+
+  // Création
   const user = new User(data);
-  return user.save();
-  } catch (err) {
-    alert("Erreur lors de la création de l'utilisateur: " + err.message);
-    return {error: err.message,data:data};
-  }
-    
+  return await user.save();
 };
 
 // Modifier
 exports.update = (id, data) => {
+  delete data.password;
+  delete data.passwordHash;
+
   return User.findByIdAndUpdate(
     id,
     data,
     { new: true, runValidators: true }
   );
 };
+
+exports.updatePassword = (id, hash) => {
+  return User.findByIdAndUpdate(
+    id,
+    { passwordHash: hash },
+    {
+      new: true,
+      runValidators: true
+    }
+  );
+};
+
 
 // Supprimer
 exports.delete = (id) => {
