@@ -4,7 +4,7 @@ const controller = require("../controllers/authController");
 
 // Page login
 router.get("/login", (req, res) => {
-  res.render("pages/login");
+  res.redirect("/");
 });
 
 // Traitement login

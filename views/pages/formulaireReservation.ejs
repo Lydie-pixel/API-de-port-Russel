@@ -11,6 +11,9 @@
 
     <h2><%= reservation ? "Modifier une réservation" : "Ajouter une réservation" %></h2>
 
+    <% if (error) { %>
+      <p style="color:red"><%= error %></p>
+    <% } %>
     <form method="POST" action="<%= reservation ? '/reservations/' + reservation._id : '/reservations' %>">
 
       <label>Numéro du Catway</label>
@@ -41,7 +44,7 @@
       <input
       type="date"
       name="startDate"
-      value="<%= reservation ? reservation.startDate.toISOString().split('T')[0] : '' %>"
+      value="<%= reservation?.startDate?.toISOString?.().split('T')[0] || '' %>"
       required
       >
 
@@ -49,12 +52,16 @@
       <input 
         type="date"
         name="endDate"
-        value="<%= reservation ? reservation.endDate.toISOString().split('T')[0] : '' %>"
+        value="<%= reservation?.endDate?.toISOString?.().split('T')[0] || '' %>"
         required
       >
 
       <button type="submit">
-        <%= reservation ? "Modifier" : "Ajouter" %>
+        <% if (isEdit) { %>
+          Modifier
+        <% } else { %>
+          Ajouter
+        <% } %>
       </button>
        <button type="button" onclick="window.location.href='/reservations';">Annuler</button>
     </form>

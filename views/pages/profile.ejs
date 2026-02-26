@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon Profil</title>
+  <link rel="stylesheet" href="/asset/css/general.css">
+</head>
+
+<body>
+
+<%- include('../componements/haeder') %>
+<%- include('../componements/head') %>
+
+<h2>Mon Profil</h2>
+
+<section>
+
+  <p><strong>Nom :</strong> <%= user.name %></p>
+  <p><strong>Pseudo :</strong> <%= user.userName %></p>
+  <p><strong>Email :</strong> <%= user.userMail %></p>
+  <p><strong>Rôle :</strong> <%= user.role %></p>
+</section>
+
+
+<section>
+
+  <h3>Changer mon mot de passe</h3>
+
+  <% if (error) { %>
+    <p style="color:red;"><%= error %></p>
+  <% } %>
+
+  <% if (success) { %>
+    <p style="color:green;"><%= success %></p>
+  <% } %>
+
+  <form method="POST" action="/profile/password">
+
+    <label>Ancien mot de passe</label>
+    <input type="password" name="oldPassword" required>
+
+    <label>Nouveau mot de passe</label>
+    <input type="password" name="newPassword" required>
+
+    <label>Confirmer</label>
+    <input type="password" name="confirmPassword" required>
+
+    <button type="submit">Modifier</button>
+    <button type="button" onclick="window.location.href='/dashboard';">Retour</button>
+  </form>
+
+</section>
+
+<%- include('../componements/footer') %>
+
+</body>
+</html>

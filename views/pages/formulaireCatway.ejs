@@ -10,6 +10,9 @@
     <%- include('../componements/head') %>
     <h2><%= catway ? "Modifier un catway" : "Ajouter un catway" %></h2>
 
+    <% if (error) { %>
+      <p style="color:red; text-align:center;"><%= error %></p>
+    <% } %>
     <form method="POST" action="<%= catway ? '/catways/' + catway._id : '/catways' %>">
 
       <label>Numéro</label>
@@ -18,10 +21,11 @@
         name="catwayNumber"
         value="<%= catway ? catway.catwayNumber : '' %>"
         required
+        <%= isEdit ? "disabled" : "" %>
       >
 
       <label>Type</label>
-      <select name="catwayType" required>
+      <select name="catwayType" required <%= isEdit ? "disabled" : "" %>>
         <option value="">-- Choisir --</option>
 
         <option value="short"
@@ -44,7 +48,11 @@
       >
 
       <button type="submit">
-        <%= catway ? "Modifier" : "Ajouter" %>
+        <% if (isEdit) { %>
+          Modifier
+        <% } else { %>
+           Ajouter
+        <% } %>
       </button>
        <button type="button" onclick="window.location.href='/catways';">Annuler</button>
     </form>

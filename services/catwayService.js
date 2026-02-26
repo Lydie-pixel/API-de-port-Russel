@@ -1,8 +1,12 @@
+/**
+ * Service de gestion des catways
+ * Communication avec MongoDB
+ */
 const Catway = require("../models/catwayModel");
 
 // Lire tous les catways
 exports.getAll = () => {
-  return Catway.find();
+  return Catway.find().sort({ catwayNumber: 1 });;
 };
 
 // Lire un catway
@@ -11,14 +15,22 @@ exports.getById = (id) => {
 };
 
 // Créer
-exports.create = (data) => {
-  const alFieldsOk = true;
+exports.create = async (data) => {
   
-   if (!data.name || !data.description) {
-    return { error: "Tous les champs sont requis.",data : data };
+   if (!data.catwayNumber || !data.catwayType || !data.catwayState) {
+    throw new Error("Tous les champs sont requis.");
   }
+  // Vérifie déjà s'il existe
+  const existing = await Catway.findOne({
+    catwayNumber: data.catwayNumber
+  });
+
+  if (existing) {
+    throw new Error("Ce catway existe déjà");
+  }
+
   const catway = new Catway(data);
-  return catway.save();
+  return await catway.save();
 };
 
 // Modifier
